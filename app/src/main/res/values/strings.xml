@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">serviciosweb_android</string>
+
+    !-- Strings - MainActivity -->
+    <string name="lblMTitulo">Sistema Restaurante - <b> Administración</b></string>
+
+    <string name="btnMIniciarSesion">Iniciar Sesión</string>
+    <string name="lblMCorreoRequerido">Correo</string>
+    <string name="lblMContraseniaRequerido"><b>Contraseña</b></string>
+    <string name="btnMRegistrarse">Registrarse</string>
+    <string name="chckbMGuardarSesion">Guardar Sesión</string>
+    <string name="lblMRedesSociales">Redes Sociales</string>
+
+    <!--Strings - ActivityRegistro-->
+
+    <string name="lblRCorreo">Correo</string>
+    <string name="lblRClave">Contraseña</string>
+    <string name="lblREdad">Edad</string>
+    <string name="lblRSexo">Sexo</string>
+    <string name="lblRDni">DNI</string>
+    <string name="btnRGrabar">Registrarse</string>
+    <string name="lblRNombre">Nombres</string>
+    <string name="lblRApellido">Apellidos</string>
+
+
+
+    <!--Strings - EncuestaActivity-->
+    <string name="rbtnEP">opcion</string>
+
 </resources>
