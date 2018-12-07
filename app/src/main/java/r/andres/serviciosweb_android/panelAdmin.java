@@ -134,20 +134,22 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
 
 
             }
+
+
         }
 
         for(int i = 0; i<NUM_ROWS; i++) {
-            TableRow tableRow = new TableRow(this);
-            tablaEncuestas.addView(tableRow);
-            TextView objText = new TextView(this);
-            objText.setText("Descripción");
-            tableRow.addView(objText);
+                TableRow tableRow = new TableRow(this);
+                tablaEncuestas.addView(tableRow);
+                TextView objText = new TextView(this);
+                objText.setText("Descripción");
+                tableRow.addView(objText);
 
-            for (int j = 0; j < NUM_COLS; j++) {
-                Button button = new Button(this);
+                for (int j = 0; j < NUM_COLS; j++) {
+                    Button button = new Button(this);
 
 
-            }
+                }
         }
     }
 }
