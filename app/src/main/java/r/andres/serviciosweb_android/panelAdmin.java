@@ -4,8 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,15 +25,11 @@ import r.andres.serviciosweb_android.utilitarios.Constantes;
 
 public class panelAdmin extends AppCompatActivity implements View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
 
-    private int NUM_COLS=1;
-    private int NUM_ROWS=4;
 
     String codigoObtenidoIntent;
     RequestQueue request;
     StringRequest StringRequest;
 
-    TextView txtMIdentificador;
-    TextView txtMDescripcion;
     Button btnPCrear;
     TableLayout tablaEncuestas;
 
@@ -52,8 +46,6 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
 
     }
     public void llamandoRecursos(){
-        txtMIdentificador = findViewById(R.id.txtMIdentificador);
-        txtMDescripcion = findViewById(R.id.txtMDescripcion);
         btnPCrear = findViewById(R.id.btnPCrear);
         tablaEncuestas = findViewById(R.id.tablaEncuestas);
     }
@@ -106,10 +98,22 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
                 listaEncuesta.add(x);
             }
 
-            txtMIdentificador.setText(listaEncuesta.get(0).getIdentificador());
-            txtMDescripcion.setText(listaEncuesta.get(0).getDes());
 
-            tablaDinamica();
+            for (encuestaBean objEncuesta : listaEncuesta) {
+
+                TableRow tableRow = new TableRow(this);
+
+                tablaEncuestas.addView(tableRow);
+                TextView objText = new TextView(this);
+                objText.setTextSize(30);
+                objText.setText(objEncuesta.getIdentificador());
+                TextView objText1 = new TextView(this);
+                objText1.setTextSize(20);
+                objText1.setText(objEncuesta.getDes());
+                tableRow.addView(objText);
+                tableRow.addView(objText1);
+
+            }
 
 
 
@@ -119,37 +123,5 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    private void tablaDinamica(){
 
-        for(int i = 0; i<NUM_ROWS; i++){
-            TableRow tableRow = new TableRow(this);
-            tablaEncuestas.addView(tableRow);
-            TextView objText = new TextView(this);
-            objText.setText("identificador");
-            tableRow.addView(objText);
-
-
-            for(int j= 0; j<NUM_COLS; j++){
-                Button button = new Button(this);
-
-
-            }
-
-
-        }
-
-        for(int i = 0; i<NUM_ROWS; i++) {
-                TableRow tableRow = new TableRow(this);
-                tablaEncuestas.addView(tableRow);
-                TextView objText = new TextView(this);
-                objText.setText("Descripción");
-                tableRow.addView(objText);
-
-                for (int j = 0; j < NUM_COLS; j++) {
-                    Button button = new Button(this);
-
-
-                }
-        }
-    }
 }
