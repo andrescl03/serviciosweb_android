@@ -1,7 +1,10 @@
 package r.andres.serviciosweb_android;
 
+import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +15,15 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import r.andres.serviciosweb_android.entidades.usuarioBean;
+import r.andres.serviciosweb_android.utilitarios.Constantes;
 
 public class MainActivity extends AppCompatActivity  implements View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
 
@@ -31,7 +43,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         llamandoRecursos();
         btnIniciarSesion.setOnClickListener(this);
         btnRegistrarse.setOnClickListener(this);
-
+        request = Volley.newRequestQueue(this);
     }
 
     public void llamandoRecursos(){
@@ -45,7 +57,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
             switch (v.getId()){
                 case R.id.btnIniciarSesion:
-
+                  cargarWebService();
                     break;
 
                 case R.id.btnRegistrarse:
@@ -56,8 +68,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void cargarWebService() {
 
 
-        String URL = "http://192.168.43.25:8080/Rest_Servicio_presente/rest/servicios2/query1?"
-                + "correo=" + txtMCorreo.getText().toString()
+        String URL = "http://192.168.1.41:8080/Rest_Servicio/rest/restorant/login?"
+                + "cod=" + txtMCorreo.getText().toString()
                 + "&pass=" + txtMClave.getText().toString();
 
         URL = URL.replace(" ", "%20");
@@ -69,13 +81,36 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     @Override
     public void onErrorResponse(VolleyError error) {
 
-        Toast.makeText(this,"El usuario no existe en el servidor ",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Datos incorrectos" ,Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResponse(String response) {
+                  String datoObtenido=    response;
+                usuarioBean objUsuario = new usuarioBean();
 
-        Toast.makeText(this,"El usuario existe en el WebService"  ,Toast.LENGTH_SHORT).show();
+
+
+                  try {
+                      JSONArray objJson = new JSONArray(datoObtenido);
+                      objUsuario.setCodUsuario(objJson.getString(2));
+                      Toast.makeText(this,"codigo" + objUsuario.getCodUsuario() , Toast.LENGTH_SHORT).show();
+
+
+                  }catch (Exception e){
+
+
+                  }
+
+
+                String[] cadenaRecibido =  response.toString().split(",");
+                        String codigoCompleto =  cadenaRecibido[1];
+                String[] codigoRecibo = codigoCompleto.split(":");
+                        String codigoEnvio = codigoRecibo[1];
+                Intent panel = new Intent(this, panelAdmin.class);
+                panel.putExtra(Constantes.CAMPO_USUARIOADMIN, codigoEnvio);
+                startActivity(panel);
+
 
 
     }
