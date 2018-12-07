@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".panelAdmin" />
-        <activity android:name=".DetallePanel"></activity>
+        <activity android:name=".DetallePanel"   android:windowSoftInputMode="adjustPan">
+
+
+        </activity>
     </application>
 
 </manifest>

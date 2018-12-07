@@ -61,7 +61,7 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
         switch (v.getId()){
             case R.id.btnPCrear:
                 Intent intentDetalle = new Intent(this,DetallePanel.class);
-
+                intentDetalle.putExtra(Constantes.CAMPO_USUARIOADMIN,codigoObtenidoIntent);
                 startActivity(intentDetalle);
 
                 break;

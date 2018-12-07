@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     RequestQueue request;
     StringRequest StringRequest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,29 +89,41 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     public void onResponse(String response) {
 
 
-             String datoObtenido =  response;
+
+
+            Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
+            String datoObtenido = response;
             ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
             usuarioBean objUsuario = new usuarioBean();
 
+
             try {
 
-            JSONArray jsonArray = new JSONArray(datoObtenido);
-            lista.add(jsonArray.getJSONObject(0));
-            objUsuario.setCodUsuario(lista.get(0).getString("cod"));
+                JSONArray jsonArray = new JSONArray(datoObtenido);
+                lista.add(jsonArray.getJSONObject(0));
+                objUsuario.setCodUsuario(lista.get(0).getString("cod"));
+
+                if( objUsuario.getCodUsuario() == null){
+                    Toast.makeText(this,"Datos incorrectos" ,Toast.LENGTH_SHORT).show();
+                return;
+                }
+
+                else{
+                    Intent panel = new Intent(this, panelAdmin.class);
+                    panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
+                    startActivity(panel);
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
-        }catch (Exception e){
-            e.printStackTrace();
+
         }
 
 
 
-                Intent panel = new Intent(this, panelAdmin.class);
-                panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
-                startActivity(panel);
-
-
-
-    }
 }
 
