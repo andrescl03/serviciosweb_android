@@ -49,10 +49,15 @@ public class DetallePanel extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btnDAgregarP:
+
+
+
                 break;
 
 
             case R.id.btnDGrabar:
+
+
                 break;
         }
 
@@ -69,6 +74,6 @@ public class DetallePanel extends AppCompatActivity implements View.OnClickListe
     }
 
     public void cargarWebService(){
-        
+
     }
 }
