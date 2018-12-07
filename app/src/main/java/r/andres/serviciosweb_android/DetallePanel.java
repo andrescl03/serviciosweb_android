@@ -13,4 +13,6 @@ public class DetallePanel extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_panel);
 
     }
+
+
 }

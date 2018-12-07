@@ -3,6 +3,12 @@ package r.andres.serviciosweb_android;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,32 +27,49 @@ import r.andres.serviciosweb_android.utilitarios.Constantes;
 
 public class panelAdmin extends AppCompatActivity implements View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
 
+    private int NUM_COLS=2;
+    private int NUM_ROWS=2;
 
     String codigoObtenidoIntent;
     RequestQueue request;
     StringRequest StringRequest;
+
+    TextView txtMIdentificador;
+    TextView txtMDescripcion;
+    Button btnPCrear;
+    TableLayout tablaEncuestas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_admin);
         obtenerElementosIntent();
-
+        llamandoRecursos();
+        btnPCrear.setOnClickListener(this);
         request = Volley.newRequestQueue(this);
         cargarWebService();
 
 
     }
+    public void llamandoRecursos(){
+        txtMIdentificador = findViewById(R.id.txtMIdentificador);
+        txtMDescripcion = findViewById(R.id.txtMDescripcion);
+        btnPCrear = findViewById(R.id.btnPCrear);
+        tablaEncuestas = findViewById(R.id.tablaEncuestas);
+    }
 
     public void obtenerElementosIntent(){
-
         Bundle datos = this.getIntent().getExtras();
         codigoObtenidoIntent = datos.getString(Constantes.CAMPO_USUARIOADMIN);
 
     }
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnPCrear:
 
+                break;
+        }
     }
     public void cargarWebService() {
 
@@ -57,17 +80,11 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
         URL = URL.replace(" ", "%20");
         StringRequest = new StringRequest(Request.Method.GET, URL, this, this);
         request.add(StringRequest);
-
-
     }
-
     @Override
     public void onErrorResponse(VolleyError error) {
         Toast.makeText(this,"error"+ error ,Toast.LENGTH_SHORT).show();
-
     }
-
-
     @Override
     public void onResponse(String response) {
         ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
@@ -89,14 +106,25 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
                 listaEncuesta.add(x);
             }
 
+            txtMIdentificador.setText(listaEncuesta.get(0).getIdentificador());
+            txtMDescripcion.setText(listaEncuesta.get(0).getDes());
 
+
+
+            for(int i = 0; i<NUM_ROWS; i++){
+                TableRow tableRow = new TableRow(this);
+                tablaEncuestas.addView(tableRow);
+
+                for(int j= 0; j<NUM_COLS; j++){
+                    Button button = new Button(this);
+                    tableRow.addView(txtMIdentificador);
+
+                }
+            }
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
-
-
-
 
 }
