@@ -27,8 +27,8 @@ import r.andres.serviciosweb_android.utilitarios.Constantes;
 
 public class panelAdmin extends AppCompatActivity implements View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
 
-    private int NUM_COLS=2;
-    private int NUM_ROWS=2;
+    private int NUM_COLS=1;
+    private int NUM_ROWS=4;
 
     String codigoObtenidoIntent;
     RequestQueue request;
@@ -109,23 +109,45 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
             txtMIdentificador.setText(listaEncuesta.get(0).getIdentificador());
             txtMDescripcion.setText(listaEncuesta.get(0).getDes());
 
+            tablaDinamica();
 
 
-            for(int i = 0; i<NUM_ROWS; i++){
-                TableRow tableRow = new TableRow(this);
-                tablaEncuestas.addView(tableRow);
-
-                for(int j= 0; j<NUM_COLS; j++){
-                    TextView objText = new TextView(this);
-                    objText.setText("xd");
-                    tableRow.addView(objText);
-
-                }
-            }
 
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
+
+    private void tablaDinamica(){
+
+        for(int i = 0; i<NUM_ROWS; i++){
+            TableRow tableRow = new TableRow(this);
+            tablaEncuestas.addView(tableRow);
+            TextView objText = new TextView(this);
+            objText.setText("identificador");
+            tableRow.addView(objText);
+
+
+            for(int j= 0; j<NUM_COLS; j++){
+                Button button = new Button(this);
+
+
+            }
+        }
+
+        for(int i = 0; i<NUM_ROWS; i++) {
+            TableRow tableRow = new TableRow(this);
+            tablaEncuestas.addView(tableRow);
+            TextView objText = new TextView(this);
+            objText.setText("Descripción");
+            tableRow.addView(objText);
+
+            for (int j = 0; j < NUM_COLS; j++) {
+                Button button = new Button(this);
+
+
+            }
+        }
+    }
 }
