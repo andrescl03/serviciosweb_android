@@ -90,34 +90,31 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
 
 
+        ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
 
-            Toast.makeText(this, response, Toast.LENGTH_SHORT).show();
-            String datoObtenido = response;
-            ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
-            usuarioBean objUsuario = new usuarioBean();
+        usuarioBean objUsuario = new usuarioBean();
 
-
-            try {
-
-                JSONArray jsonArray = new JSONArray(datoObtenido);
-                lista.add(jsonArray.getJSONObject(0));
-                objUsuario.setCodUsuario(lista.get(0).getString("cod"));
-
-                if( objUsuario.getCodUsuario() == null){
-                    Toast.makeText(this,"Datos incorrectos" ,Toast.LENGTH_SHORT).show();
-                return;
-                }
-
-                else{
-                    Intent panel = new Intent(this, panelAdmin.class);
-                    panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
-                    startActivity(panel);
-
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++){
+                lista.add(jsonArray.getJSONObject(i));
             }
+            if(lista.size()==0){
+                Toast.makeText(this,"Datos incorrectos" ,Toast.LENGTH_SHORT).show();
+            }else{
+                Intent panel = new Intent(this, panelAdmin.class);
+                panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
+                startActivity(panel);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
 
 
