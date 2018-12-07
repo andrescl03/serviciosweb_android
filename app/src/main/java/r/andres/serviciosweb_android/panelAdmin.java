@@ -116,8 +116,9 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
                 tablaEncuestas.addView(tableRow);
 
                 for(int j= 0; j<NUM_COLS; j++){
-                    Button button = new Button(this);
-                    tableRow.addView(txtMIdentificador);
+                    TextView objText = new TextView(this);
+                    objText.setText("xd");
+                    tableRow.addView(objText);
 
                 }
             }
