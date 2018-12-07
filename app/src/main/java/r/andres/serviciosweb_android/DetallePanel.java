@@ -143,7 +143,7 @@ public class DetallePanel extends AppCompatActivity implements View.OnClickListe
         tableDPreguntas.addView(tableRow);
 
         TextView objText = new TextView(this);
-        objText.setTextColor(getResources().getColor(R.color.colorPrimaryLight));
+        objText.setTextColor(getResources().getColor(R.color.colorIcons));
         objText.setTextSize(20);
 
         objText.setText("Pregunta: " +txtDPreguntas.getText());
