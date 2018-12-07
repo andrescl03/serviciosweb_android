@@ -1,5 +1,6 @@
 package r.andres.serviciosweb_android;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -59,6 +60,9 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnPCrear:
+                Intent intentDetalle = new Intent(this,DetallePanel.class);
+
+                startActivity(intentDetalle);
 
                 break;
         }
