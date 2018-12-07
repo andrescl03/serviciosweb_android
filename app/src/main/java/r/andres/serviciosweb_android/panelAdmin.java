@@ -12,6 +12,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import r.andres.serviciosweb_android.entidades.encuestaBean;
 import r.andres.serviciosweb_android.utilitarios.Constantes;
 
 public class panelAdmin extends AppCompatActivity implements View.OnClickListener , Response.Listener<String>, Response.ErrorListener{
@@ -58,12 +63,37 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        Toast.makeText(this,"error"+ error ,Toast.LENGTH_SHORT).show();
 
     }
 
 
     @Override
     public void onResponse(String response) {
+        ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
+
+        try {
+
+            JSONArray jsonArray = new JSONArray(response);
+
+            ArrayList<encuestaBean> listaEncuesta = new ArrayList<encuestaBean>();
+
+            for (int i = 0; i < jsonArray.length(); i++){
+                lista.add(jsonArray.getJSONObject(i));
+            }
+            for (JSONObject obj : lista){
+                encuestaBean x = new encuestaBean();
+                x.setId(Integer.parseInt(obj.getString("id")));
+                x.setDes(obj.getString("des"));
+                x.setIdentificador(obj.getString("identificador"));
+                listaEncuesta.add(x);
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 

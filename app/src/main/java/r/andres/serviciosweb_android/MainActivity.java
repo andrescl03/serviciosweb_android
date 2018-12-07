@@ -86,29 +86,27 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
     @Override
     public void onResponse(String response) {
-                  String datoObtenido=    response;
-                usuarioBean objUsuario = new usuarioBean();
+
+
+             String datoObtenido =  response;
+            ArrayList<JSONObject> lista = new ArrayList<JSONObject>();
+            usuarioBean objUsuario = new usuarioBean();
+
+            try {
+
+            JSONArray jsonArray = new JSONArray(datoObtenido);
+            lista.add(jsonArray.getJSONObject(0));
+            objUsuario.setCodUsuario(lista.get(0).getString("cod"));
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
 
-                  try {
-                      JSONArray objJson = new JSONArray(datoObtenido);
-                      objUsuario.setCodUsuario(objJson.getString(2));
-                      Toast.makeText(this,"codigo" + objUsuario.getCodUsuario() , Toast.LENGTH_SHORT).show();
-
-
-                  }catch (Exception e){
-
-
-                  }
-
-
-                String[] cadenaRecibido =  response.toString().split(",");
-                        String codigoCompleto =  cadenaRecibido[1];
-                String[] codigoRecibo = codigoCompleto.split(":");
-                        String codigoEnvio = codigoRecibo[1];
                 Intent panel = new Intent(this, panelAdmin.class);
-                panel.putExtra(Constantes.CAMPO_USUARIOADMIN, codigoEnvio);
+                panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
                 startActivity(panel);
 
 
