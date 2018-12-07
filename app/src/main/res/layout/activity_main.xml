@@ -36,23 +36,23 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout5"
-        android:layout_width="377dp"
+        android:layout_width="375dp"
 
         android:layout_height="68dp"
 
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:backgroundTint="#17B1E3"
         app:layout_constraintBottom_toTopOf="@+id/btnIniciarSesion"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/txtMClave"
-            android:layout_width="362dp"
-            android:layout_height="52dp"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
             android:backgroundTint="#17B1E3"
             android:ems="10"
             android:fontFamily="sans-serif"

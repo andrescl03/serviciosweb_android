@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Paleta de colores descargado https://www.materialpalette.com/teal/blue  -->
-    <color name="colorPrimary">#2aa297</color>
+    <color name="colorPrimary">#49b6ac</color>
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorPrimaryLight">#b2dfdb</color>
     <color name="colorAccent">#17B1E3</color>

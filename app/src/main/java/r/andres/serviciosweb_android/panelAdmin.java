@@ -109,10 +109,10 @@ public class panelAdmin extends AppCompatActivity implements View.OnClickListene
 
                 tablaEncuestas.addView(tableRow);
                 TextView objText = new TextView(this);
-                objText.setTextSize(30);
+                objText.setTextSize(15);
                 objText.setText(objEncuesta.getIdentificador());
                 TextView objText1 = new TextView(this);
-                objText1.setTextSize(20);
+                objText1.setTextSize(15);
                 objText1.setText(objEncuesta.getDes());
                 tableRow.addView(objText);
                 tableRow.addView(objText1);

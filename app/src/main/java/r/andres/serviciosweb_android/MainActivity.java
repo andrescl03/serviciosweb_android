@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
                     break;
 
                 case R.id.btnRegistrarse:
+                    Intent intentRegistro = new Intent(this,registroAdmin.class);
+                    startActivity(intentRegistro);
                     break;
 
             }
@@ -102,6 +104,8 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
             if(lista.size()==0){
                 Toast.makeText(this,"Datos incorrectos" ,Toast.LENGTH_SHORT).show();
             }else{
+                lista.add(jsonArray.getJSONObject(0));
+                objUsuario.setCodUsuario(lista.get(0).getString("cod"));
                 Intent panel = new Intent(this, panelAdmin.class);
                 panel.putExtra(Constantes.CAMPO_USUARIOADMIN, objUsuario.getCodUsuario());
                 startActivity(panel);
